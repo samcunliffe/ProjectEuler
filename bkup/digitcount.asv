@@ -1,0 +1,6 @@
+function s=digitcount(x)
+!x is a numberic variable, the function counts the number of digits in x
+!for example x=1039 would return 4
+for i=1:9
+    digit=x/i
+    if (digit==0)
