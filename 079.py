@@ -1,25 +1,17 @@
-## SOLVED
-## Combination of this code and pen+paper inspection
-## of text file. Written logic is in file 'problem79.jpg'
-#
-#
-# Project Euler Problem 79
-# ========================
-# A common security method used for online banking
-# is to ask the user for three random characters
-# from a passcode. For example, if the passcode was
-# 531278, they may ask for the 2nd, 3rd, and 5th
-# characters; the expected reply would be: 317.
+# Combination of this code and pen+paper inspection of text file. Written logic
+# is in file 'problem79.jpg'
+
+# A common security method used for online banking is to ask the user for three
+# random characters from a passcode. For example, if the passcode was 531278,
+# they may ask for the 2nd, 3rd, and 5th characters; the expected reply would
+# be: 317.  The text file, keylog.txt, contains fifty successful login
+# attempts.
 # 
-# The text file, keylog.txt, contains fifty
-# successful login attempts.
-# 
-# Given that the three characters are always asked
-# for in order, analyse the file so as to determine
-# the shortest possible secret passcode of unknown
+# Given that the three characters are always asked for in order, analyse the
+# file so as to determine the shortest possible secret passcode of unknown
 # length.
 
-data=open('problem79data.txt','r')
+data=open('inputs/keylog.txt','r')
 datalist=[]
 
 # find all possible digits
