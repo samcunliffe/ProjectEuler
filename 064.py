@@ -1,55 +1,59 @@
-def surd2cf(N,k):
-  cf=[]
-  x=sqrt(N)
 
-  for i in range(k):
-    a=int(x)
-    cf.append(a)
-    if (x-a)==0: return cf
-    x=1./(x-a)
+from math import sqrt,floor
+from time import clock
+st=clock()
+
+
+def isOdd(n):return n%2!=0
+
+
+
+def irrationalSurds(n):
+  """Returns list of numbers <n that are not squares"""
+  return [i for i in range(n) if sqrt(i)!=floor(sqrt(i))]
+
+
+
+def periodLength(s):
+  """
+  Iterates over continued fraction expansion of sqrt(s) until period is found,
+  returns the length of the period.
+  """
   
-  return cf
+  # check input
+  if sqrt(s)==floor(sqrt(s)): 
+    print "Call to periodLength() with a rational number argument:",s
+    return -1
 
-from math import sqrt
+  n=0; m=[0]; d=[1]; a=[floor(sqrt(s))]
+  prevSets=[[m[0],d[0],a[0]]]
 
-oddcount=0
+  while True:
 
-for N in range(2,13):
-  print ''
-  print 'N=',N
+    # calculate vals
+    m_nplus1=(d[n]*a[n])-m[n]
+    d_nplus1=(s-(m_nplus1*m_nplus1))/d[n]
+    a_nplus1=floor((a[0] + m_nplus1)/d_nplus1)
 
-  # zeroth terms
-  x0=sqrt(N)
-  a0=int(x0)
+    # check to see if we've seen these values before
+    thisSet=[m_nplus1,d_nplus1,a_nplus1]
+    if thisSet in prevSets:
+      return n+1-prevSets.index(thisSet)
 
-  if a0*a0 == N:
-    print ''
-    #then N is a square number
-    break
-
-  #first order terms
-  x1=1./(x0-a0)
-  a1=int(x1)
-
-  x=x0
-  k=0
-        ## keeps going forever coz there's no precision in x!=x1'
-  while x != x1 or k==1:
-    a=int(x)
-    x=1./(x-a)
-    
-    print a
-
-    k+=1
+    # if not, push all vals back
+    m.append(m_nplus1)
+    d.append(d_nplus1)
+    a.append(a_nplus1)
+    prevSets.append(thisSet)
+    n+=1
 
 
-  # increment counter if period is odd
-  if k%2 != 0:
-    oddcount+=1
-  print oddcount
-
-print '\n\n\n'
-print oddcount
 
 
-    
+s=0
+for i in irrationalSurds(10000):
+  if isOdd(periodLength(i)):s+=1
+
+print s
+fn=clock()
+print('Time to run %0.3f seconds' % (fn-st))
