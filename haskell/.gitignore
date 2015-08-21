@@ -1,0 +1,7 @@
+# ignore everythin
+*
+
+# but not these please
+!.gitignore
+!Makefile
+!*.hs
