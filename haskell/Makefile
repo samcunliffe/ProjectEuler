@@ -14,4 +14,4 @@ make info:
 	$(SOURCES) $(OBJECTS) $(EXECUTA)
 
 make clean:
-	rm -rf $(OBJECTS) $(INTERFA) $(EXECUTA)
+	rm -rf $(OBJECTS) $(INTERFA) $(EXECUTA) make.stdout
