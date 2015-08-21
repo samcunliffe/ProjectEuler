@@ -8,12 +8,10 @@ EXECUTA= $(patsubst %.hs, %, $(SOURCES))
 all: $(EXECUTA)
 
 $(EXECUTA): $(SOURCES)
-	ghc -o $@ $<
+	ghc -o $@ $@
 
 make info:
 	$(SOURCES) $(OBJECTS) $(EXECUTA)
-	 
-
 
 make clean:
 	rm -rf $(OBJECTS) $(INTERFA) $(EXECUTA)
